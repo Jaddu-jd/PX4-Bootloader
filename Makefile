@@ -58,8 +58,9 @@ export ARCH_SRCS	 = cdcacm.c  usart.c
 # Note: px4fmuv3_bl is the same as px4fmuv2_bl except for a different USB device
 # string
 #
-TARGETS	= apndanfev1_bl
-#		aerofcv1_bl \
+TARGETS	= apndanfev1_bl \
+		apnnxtgencubusv1_bl \
+	# aerofcv1_bl \
 	# auavx2v1_bl \
 	# avx_v1_bl \
 	# crazyflie21_bl \
@@ -212,6 +213,9 @@ clean:
 	
 apndanfev1_bl: $(MAKEFILE_LIST) $(LIBOPENCM3)
 	${MAKE} ${MKFLAGS} -f  Makefile.f4 TARGET_HW=APN_DANFE_V1  LINKER_FILE=stm32f4.ld TARGET_FILE_NAME=$@
+
+apnnxtgencubusv1_bl: $(MAKEFILE_LIST) $(LIBOPENCM3)
+	$(MAKE) $(MKFLAGS) -f Makefile.f4 TARGET_HW=APN_NXT_GEN_CUBUS_V1 LINKER_FILE=stm32f4.ld TARGET_FILE_NAME=$@
 
 #
 # Show sizes

@@ -1647,6 +1647,55 @@
  * # define BOARD_FORCE_BL_CLOCK_BIT       RCC_AHB1ENR_IOPEEN
  * # define BOARD_FORCE_BL_PULL            GPIO_PUPD_PULLUP
 */
+
+#elif  defined(TARGET_HW_APN_NXT_GEN_CUBUS_V1)
+
+# define APP_LOAD_ADDRESS               0x08004000
+# define BOOTLOADER_DELAY               5000
+# define BOARD_FMUV2
+// # define STM32F4
+# define BOARD_USB_VBUS_SENSE_DISABLED
+# define INTERFACE_USB                  1
+# define INTERFACE_USART                1
+# define USBDEVICESTRING                "PX4 BL Cubus v1"
+# define USBMFGSTRING                   "Antarikchya"
+// # define USBVENDORID                    0x0173
+# define USBPRODUCTID                   0x0012
+# define BOOT_DELAY_ADDRESS             0x000001a0
+
+# define BOARD_TYPE                     176
+# define _FLASH_KBYTES                  (*(uint16_t *)0x1fff7a22)
+# define BOARD_FLASH_SECTORS            ((_FLASH_KBYTES == 0x400) ? 11 : 23)
+# define BOARD_FLASH_SIZE               (_FLASH_KBYTES * 1024)
+
+# define OSC_FREQ                       24
+
+# define BOARD_USART                    UART7
+# define BOARD_USART_CLOCK_REGISTER     RCC_APB1ENR
+# define BOARD_USART_CLOCK_BIT          RCC_APB1ENR_UART7EN
+
+# define BOARD_PORT_USART               GPIOE
+# define BOARD_PORT_USART_AF            GPIO_AF8
+# define BOARD_PIN_TX                   GPIO8
+# define BOARD_PIN_RX                   GPIO7
+# define BOARD_USART_PIN_CLOCK_REGISTER RCC_AHB1ENR
+# define BOARD_USART_PIN_CLOCK_BIT      RCC_AHB1ENR_IOPBEN
+# define SERIAL_BREAK_DETECT_DISABLED   1
+
+/*
+ * Uncommenting this allows to force the bootloader through
+ * a PWM output pin. As this can accidentally initialize
+ * an ESC prematurely, it is not recommended. This feature
+ * has not been used and hence defaults now to off.
+ *
+ * # define BOARD_FORCE_BL_PIN_OUT         GPIO14
+ * # define BOARD_FORCE_BL_PIN_IN          GPIO11
+ * # define BOARD_FORCE_BL_PORT            GPIOE
+ * # define BOARD_FORCE_BL_CLOCK_REGISTER  RCC_AHB1ENR
+ * # define BOARD_FORCE_BL_CLOCK_BIT       RCC_AHB1ENR_IOPEEN
+ * # define BOARD_FORCE_BL_PULL            GPIO_PUPD_PULLUP
+*/
+
 #else
 # error Undefined Target Hardware
 #endif
